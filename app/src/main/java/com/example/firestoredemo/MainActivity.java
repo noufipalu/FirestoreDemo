@@ -3,6 +3,7 @@ package com.example.firestoredemo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     EditText name, email, password;
-    Button save;
+    Button save, view, view2;
     FirebaseFirestore firestore;
 
     @Override
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         save = findViewById(R.id.btn_save);
+        view = findViewById(R.id.btn_view);
+        view2 = findViewById(R.id.btn_view2);
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -60,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Failed to save data", Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
+
+        view2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfilesaslistActivity.class));
             }
         });
     }
